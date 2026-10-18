@@ -47,7 +47,7 @@ The Wrangler configuration serves `public/` as static assets and routes `/api/*`
 
    `ADMIN_PASSWORD` must be at least 14 characters. `ADMIN_SESSION_SECRET` must be at least 32 characters. Wrangler securely prompts for each value. Never place secret values in HTML, Git, command-line arguments, or the GitHub repository.
 
-5. Create a GitHub repository from this folder and push its `main` branch. In Cloudflare, choose **Workers & Pages → Create application → GitHub** and connect the repository. Set the Worker name to `littles-valley-preparatory-school` and deploy command to `npm run deploy`. Keep the repository root `/` and the build output directory empty.
+5. Create a GitHub repository from this folder and push its `main` branch. In Cloudflare, choose **Workers & Pages → Create application → GitHub** and connect the repository. Set the Worker name to `little-velley` and deploy command to `npm run deploy`. Keep the repository root `/` and the build output directory empty.
 6. Open `https://<your-worker-name>.<your-account>.workers.dev/admin.html` and sign in with the staff password. Future pushes to the production branch deploy automatically when Git integration is enabled.
 
 An optional custom domain requires owning a domain. Check Cloudflare's current [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/), [D1 limits and pricing](https://developers.cloudflare.com/d1/platform/pricing/), and [R2 limits and pricing](https://developers.cloudflare.com/r2/pricing/) before publishing. Each currently lists a Free-tier allowance, but plan limits can change and can be shared across your account.

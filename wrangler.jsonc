@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "littles-valley-preparatory-school",
+  "name": "little-velley",
   "compatibility_date": "2026-10-18",
   "main": "src/worker.js",
   "d1_databases": [
