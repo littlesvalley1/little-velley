@@ -8,9 +8,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "wrangler deploy --dry-run",
-    "db:migrate:local": "wrangler d1 migrations apply littles-valley-school --local",
-    "db:migrate:remote": "wrangler d1 migrations apply littles-valley-school --remote"
+    "check": "wrangler deploy --dry-run"
   },
   "devDependencies": {
     "wrangler": "4.151.1"
