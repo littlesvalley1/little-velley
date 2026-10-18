@@ -1,0 +1,18 @@
+{
+  "name": "littles-valley-preparatory-school",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "wrangler deploy --dry-run",
+    "db:migrate:local": "wrangler d1 migrations apply littles-valley-school --local",
+    "db:migrate:remote": "wrangler d1 migrations apply littles-valley-school --remote"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.1"
+  }
+}
