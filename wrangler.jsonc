@@ -7,7 +7,7 @@
     {
       "binding": "SCHOOL_DB",
       "database_name": "littles-valley-school",
-      "database_id": "00000000-0000-0000-0000-000000000001",
+      "database_id": "eb6b16a7-0f4c-4cfb-a630-d283e9d1c619",
       "migrations_dir": "migrations"
     }
   ],
@@ -20,6 +20,9 @@
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*", "/media/*"]
+    "run_worker_first": [
+      "/api/*",
+      "/media/*"
+    ]
   }
 }

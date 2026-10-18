@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ec">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Teacher &amp; School Admin | Little's Valley</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/admin.css">
+    <script src="/admin.js" type="module"></script>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <a class="admin-back" href="/">← Back to school website</a>
+      <header class="admin-header">
+        <a class="admin-brand" href="/">
+          <span class="admin-brand-icon" aria-hidden="true">✿</span>
+          <span>
+            <span class="admin-brand-name">Little's Valley</span>
+            <span class="admin-brand-type">School office</span>
+          </span>
+        </a>
+        <span class="secure-label"><span aria-hidden="true">●</span> Private staff area</span>
+      </header>
+
+      <section class="login-card" id="login-panel" aria-labelledby="login-title">
+        <span class="login-flower" aria-hidden="true">✿</span>
+        <p class="admin-kicker">Welcome back</p>
+        <h1 id="login-title">The school office.</h1>
+        <p class="login-intro">Sign in with the staff password to update teacher profiles and school news.</p>
+        <form id="login-form" class="admin-form">
+          <label for="staff-password">Staff password</label>
+          <input id="staff-password" name="password" type="password" autocomplete="current-password" required maxlength="256">
+          <button class="admin-button" type="submit">Sign in securely <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="form-message" id="login-message" role="status" aria-live="polite"></p>
+        <p class="login-footnote">Only share the staff password with trusted school staff.</p>
+      </section>
+
+      <section class="dashboard" id="dashboard" hidden aria-labelledby="dashboard-title">
+        <div class="dashboard-heading">
+          <div>
+            <p class="admin-kicker">For staff &amp; teachers</p>
+            <h1 id="dashboard-title">A little school magic.</h1>
+            <p>Update the school’s public information. Save as a draft until you’re ready to share.</p>
+          </div>
+          <button class="admin-button admin-button-quiet" id="logout-button" type="button">Sign out</button>
+        </div>
+
+        <p class="dashboard-message" id="dashboard-message" role="status" aria-live="polite"></p>
+
+        <details class="admin-section" open>
+          <summary><span class="section-number">01</span><span>School details</span><span class="summary-help">Phone, location &amp; family notice</span></summary>
+          <form id="settings-form" class="admin-form admin-grid">
+            <div class="field">
+              <label for="school-name">School name</label>
+              <input id="school-name" name="school_name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="school-phone">Phone</label>
+              <input id="school-phone" name="phone" maxlength="24" required>
+            </div>
+            <div class="field field-full">
+              <label for="school-address">Address</label>
+              <input id="school-address" name="address" maxlength="280" required>
+            </div>
+            <div class="field">
+              <label for="school-status">Opening status</label>
+              <select id="school-status" name="status" required>
+                <option>Temporarily closed</option>
+                <option>Open</option>
+                <option>Call to confirm</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="visit-note">Visiting note</label>
+              <input id="visit-note" name="visit_note" maxlength="240" required>
+            </div>
+            <div class="field field-full">
+              <label for="school-about">Short school introduction</label>
+              <textarea id="school-about" name="about" rows="3" maxlength="500" required></textarea>
+            </div>
+            <div class="field field-full">
+              <button class="admin-button" type="submit">Save school details</button>
+            </div>
+          </form>
+        </details>
+
+        <details class="admin-section" open>
+          <summary><span class="section-number">02</span><span>Teacher profiles</span><span class="summary-help">Photos, role &amp; introduction</span></summary>
+          <div class="privacy-note"><strong>Photo privacy:</strong> Only upload a teacher photo the person has agreed to share publicly. Do not upload student photos here.</div>
+          <form id="teacher-form" class="admin-form admin-grid" enctype="multipart/form-data">
+            <input name="id" type="hidden">
+            <div class="field">
+              <label for="teacher-name">Teacher name</label>
+              <input id="teacher-name" name="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="teacher-role">Role or subject</label>
+              <input id="teacher-role" name="role" maxlength="100" placeholder="For example, Early Years Teacher" required>
+            </div>
+            <div class="field field-full">
+              <label for="teacher-bio">Short introduction</label>
+              <textarea id="teacher-bio" name="bio" rows="3" maxlength="600" placeholder="Share an approved introduction for families."></textarea>
+            </div>
+            <div class="field field-full">
+              <label for="teacher-image">Teacher photo <span class="label-note">JPEG, PNG or WebP · up to 5 MB</span></label>
+              <input id="teacher-image" name="image" type="file" accept="image/jpeg,image/png,image/webp">
+            </div>
+            <label class="check-field"><input name="published" type="checkbox"><span>Publish this teacher profile on the public website</span></label>
+            <div class="field-full form-actions">
+              <button class="admin-button" type="submit">Save teacher</button>
+              <button class="text-button" id="teacher-cancel" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+          <div class="record-list" id="teacher-list" aria-live="polite"></div>
+        </details>
+
+        <details class="admin-section" open>
+          <summary><span class="section-number">03</span><span>Notices &amp; events</span><span class="summary-help">Share important dates with families</span></summary>
+          <form id="notice-form" class="admin-form admin-grid">
+            <input name="id" type="hidden">
+            <div class="field">
+              <label for="notice-kind">Type</label>
+              <select id="notice-kind" name="kind"><option value="notice">Notice</option><option value="event">Event</option></select>
+            </div>
+            <div class="field">
+              <label for="notice-date">Show from</label>
+              <input id="notice-date" name="publish_on" type="date" required>
+            </div>
+            <div class="field field-full">
+              <label for="notice-title">Headline</label>
+              <input id="notice-title" name="title" maxlength="120" required>
+            </div>
+            <div class="field field-full">
+              <label for="notice-message">Details</label>
+              <textarea id="notice-message" name="message" rows="3" maxlength="1200" required></textarea>
+            </div>
+            <label class="check-field"><input name="published" type="checkbox"><span>Publish on the public website</span></label>
+            <div class="field-full form-actions">
+              <button class="admin-button" type="submit">Save notice or event</button>
+              <button class="text-button" id="notice-cancel" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+          <div class="record-list" id="notice-list" aria-live="polite"></div>
+        </details>
+
+        <details class="admin-section" open>
+          <summary><span class="section-number">04</span><span>School highlights</span><span class="summary-help">Group or class achievements</span></summary>
+          <div class="privacy-note"><strong>Keep children safe:</strong> Share class or group achievements only. Never publish a child’s name, photo, exact marks, report card, or other identifying result.</div>
+          <form id="highlight-form" class="admin-form admin-grid">
+            <input name="id" type="hidden">
+            <div class="field">
+              <label for="highlight-year">School year</label>
+              <input id="highlight-year" name="school_year" maxlength="9" placeholder="2026–27" required>
+            </div>
+            <div class="field">
+              <label for="highlight-title">Headline</label>
+              <input id="highlight-title" name="title" maxlength="120" required>
+            </div>
+            <div class="field field-full">
+              <label for="highlight-details">Group achievement or school milestone</label>
+              <textarea id="highlight-details" name="details" rows="3" maxlength="1200" placeholder="For example, a class project or school-wide celebration. No individual student records."></textarea>
+            </div>
+            <label class="check-field"><input name="published" type="checkbox"><span>Publish on the public website</span></label>
+            <div class="field-full form-actions">
+              <button class="admin-button" type="submit">Save school highlight</button>
+              <button class="text-button" id="highlight-cancel" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+          <div class="record-list" id="highlight-list" aria-live="polite"></div>
+        </details>
+
+        <div class="dashboard-footer">
+          <a href="/">← View the public website</a>
+          <span>For staff use only · Changes save securely to Cloudflare.</span>
+        </div>
+      </section>
+
+      <p class="admin-error" id="fatal-message" role="alert" hidden></p>
+    </main>
+  </body>
+</html>

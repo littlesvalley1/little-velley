@@ -24,14 +24,14 @@ npm run check
 
 The Wrangler configuration serves `public/` as static assets and routes `/api/*` through the Worker. Keep this folder as the root of its own GitHub repository.
 
-1. From this project folder, create the Cloudflare resources with Wrangler:
+1. Ensure the Cloudflare resources referenced by `wrangler.jsonc` exist in the account connected to the Worker. For a new account, create them with Wrangler:
 
    ```powershell
    npx wrangler d1 create littles-valley-school
    npx wrangler r2 bucket create littles-valley-school-media
    ```
 
-2. Copy the D1 database ID Wrangler prints into `wrangler.jsonc`, replacing the all-zero placeholder in the `SCHOOL_DB` binding.
+2. If you created a new D1 database, copy its ID into the `SCHOOL_DB` binding in `wrangler.jsonc`. The ID in this repository is for the database provisioned for this project; replace it when deploying to a different Cloudflare account.
 3. Apply the production schema:
 
    ```powershell
